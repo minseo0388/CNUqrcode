@@ -17,7 +17,20 @@ studentID = str(input("학번 또는 교번을 입력하십시오 : "))
 
 now = datetime.datetime.now()
 
-timeStamp = str(now.year + now.month + now.day + now.hour + now.minute + now.second)
+year = str(now.year)
+month = str(now.month)
+day = str(now.day)
+hour = str(now.hour)
+minute = str(now.minute)
+second = str(now.second)
+
+newMonth = month.rjust(2,'0')
+newDay = day.rjust(2,'0')
+newHour = hour.rjust(2,'0')
+newMinute = minute.rjust(2,'0')
+newSecond = second.rjust(2,'0')
+
+timeStamp = str(year + newMonth + newDay + newHour + newMinute + newSecond)
 
 # 코드 형식 조합 후 Base64 형식으로 암호화합니다.
 rawCode = str(studentID+"^"+timeStamp)
