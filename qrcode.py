@@ -10,11 +10,14 @@
 # 필요한 라이브러리를 import합니다.
 import base64
 import time, datetime
+import qrcode
 
 # 교번 또는 학번을 입력받습니다.
 studentID = str(input("학번 또는 교번을 입력하십시오 : "))
 
-timeStamp = str(int(datetime.datetime.now().timestamp()))
+now = datetime.datetime.now()
+
+timeStamp = str(now.year + now.month + now.day + now.hour + now.minute + now.second)
 
 # 코드 형식 조합 후 Base64 형식으로 암호화합니다.
 rawCode = str(studentID+"^"+timeStamp)
@@ -28,6 +31,5 @@ resultCodeString = resultCode.decode('ascii')
 print(resultCodeString)
 
 # QR코드를 표출합니다.
-import qrcode
 image = qrcode.make(resultCodeString)
 image.save("result.png")
